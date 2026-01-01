@@ -25,48 +25,55 @@
             margin: 0;
             background: radial-gradient(circle at top, #0f172a, #020617);
             font-family: Inter, sans-serif;
-            color: var(--text)
+            color: var(--text);
         }
         
         .app {
             display: grid;
             grid-template-columns: 420px 1fr;
-            min-height: 100vh
+            min-height: 100vh;
         }
         
         .left {
-            padding: 30px;
+            padding: 28px;
             background: linear-gradient(180deg, #0b1220, #020617);
-            border-right: 1px solid rgba(255, 255, 255, .08)
+            border-right: 1px solid rgba(255, 255, 255, .08);
+            overflow-y: auto;
         }
         
         .title {
             font-family: Orbitron, sans-serif;
-            font-size: 26px
+            font-size: 26px;
         }
         
         .subtitle {
             font-size: 13px;
             color: var(--dim);
-            margin-bottom: 24px
+            margin-bottom: 22px;
         }
         
         h3 {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--dim);
-            margin: 22px 0 8px;
-            letter-spacing: .8px
+            margin: 22px 0 10px;
+            letter-spacing: .8px;
+        }
+        
+        .field-label {
+            font-size: 12px;
+            color: var(--dim);
+            margin-bottom: 4px;
         }
         
         input,
         select {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 9px;
+            margin-bottom: 12px;
             background: #020617;
             border: 1px solid #1f2937;
             border-radius: 6px;
-            color: var(--text)
+            color: var(--text);
         }
         
         button {
@@ -78,49 +85,49 @@
             background: linear-gradient(90deg, #38bdf8, #6366f1);
             cursor: pointer;
             color: #020617;
-            margin-top: 14px
+            margin-top: 10px;
         }
         
         .right {
-            padding: 30px;
+            padding: 28px;
             display: grid;
             grid-template-rows: auto 1fr;
-            gap: 24px
+            gap: 22px;
         }
         
         .card {
             background: linear-gradient(145deg, #0f172a, #020617);
             border-radius: 16px;
-            padding: 24px;
+            padding: 22px;
             border: 1px solid rgba(255, 255, 255, .08);
-            box-shadow: 0 0 40px rgba(0, 0, 0, .6)
+            box-shadow: 0 0 40px rgba(0, 0, 0, .6);
         }
         
         .dpi {
             font-family: JetBrains Mono, monospace;
-            font-size: 52px;
-            color: var(--blue)
+            font-size: 50px;
+            color: var(--blue);
         }
         
         .label {
-            font-size: 13px;
-            color: var(--dim)
+            font-size: 14px;
+            color: var(--dim);
         }
         
         .grid {
             display: grid;
             grid-template-columns: 320px 1fr;
-            gap: 24px
+            gap: 22px;
         }
         
         .circle {
-            width: 260px;
-            height: 260px;
+            width: 240px;
+            height: 240px;
             border-radius: 50%;
             position: relative;
             overflow: hidden;
             margin: auto;
-            border: 1px solid rgba(255, 255, 255, .1)
+            border: 1px solid rgba(255, 255, 255, .1);
         }
         
         .core {
@@ -128,30 +135,30 @@
             inset: -40%;
             border-radius: 50%;
             filter: blur(18px);
-            animation: spin linear infinite
+            animation: spin linear infinite;
         }
         
         .LOW .core {
             background: conic-gradient(from 0deg, var(--green), transparent, var(--green));
-            animation-duration: 14s
+            animation-duration: 14s;
         }
         
         .MODERATE .core {
             background: conic-gradient(from 0deg, var(--yellow), transparent, var(--yellow));
-            animation-duration: 6s
+            animation-duration: 6s;
         }
         
         .HIGH .core {
             background: conic-gradient(from 0deg, var(--red), #ff7a7a, var(--red));
-            animation-duration: 2.5s
+            animation-duration: 2.5s;
         }
         
         @keyframes spin {
             from {
-                transform: rotate(0deg)
+                transform: rotate(0deg);
             }
             to {
-                transform: rotate(360deg)
+                transform: rotate(360deg);
             }
         }
         
@@ -162,54 +169,57 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 20px;
-            z-index: 2
+            font-size: 18px;
+            z-index: 2;
         }
         
         .badge {
             display: inline-flex;
-            padding: 6px 16px;
+            padding: 6px 14px;
             border-radius: 999px;
-            font-weight: 700
+            font-weight: 700;
+            font-size: 14px;
         }
         
         .LOW.badge {
             background: var(--green);
-            color: #022c22
+            color: #022c22;
         }
         
         .MODERATE.badge {
             background: var(--yellow);
-            color: #422006
+            color: #422006;
         }
         
         .HIGH.badge {
             background: var(--red);
-            color: white
+            color: white;
         }
         
         .brief {
             display: grid;
-            gap: 16px
+            gap: 14px;
         }
         
         .box {
             padding: 16px;
             border-radius: 12px;
             background: rgba(255, 255, 255, .04);
-            border-left: 4px solid
+            border-left: 4px solid;
+            font-size: 15px;
+            line-height: 1.6;
         }
         
         .status {
-            border-color: var(--blue)
+            border-color: var(--blue);
         }
         
         .drivers {
-            border-color: var(--yellow)
+            border-color: var(--yellow);
         }
         
         .actions {
-            border-color: var(--red)
+            border-color: var(--red);
         }
     </style>
 </head>
@@ -223,23 +233,47 @@
             <div class="subtitle">Risk Intelligence Dashboard</div>
 
             <h3>ICU PARAMETERS</h3>
+
+            <div class="field-label">Λ – ICU Admission Rate</div>
             <input name="Lambda" form="f">
+
+            <div class="field-label">β₁ – HCW → Patient Transmission</div>
             <input name="beta1" form="f">
+
+            <div class="field-label">β₂ – Patient → HCW Transmission</div>
             <input name="beta2" form="f">
+
+            <div class="field-label">d₁ – Patient Discharge / Death Rate</div>
             <input name="d1" form="f">
+
+            <div class="field-label">d₂ – Colonization Clearance Rate</div>
             <input name="d2" form="f">
+
+            <div class="field-label">λ – HCW Decontamination Rate</div>
             <input name="lambda" form="f">
+
+            <div class="field-label">1/σ – Colonization Duration</div>
             <input name="1_over_sigma" form="f">
+
+            <div class="field-label">φ – Colonized → Infected Progression</div>
             <input name="phi" form="f">
+
+            <div class="field-label">μ – Environmental Contamination</div>
             <input name="mu" form="f">
 
             <h3>INDIVIDUAL EXPOSURE</h3>
+
+            <div class="field-label">ICU Stay Duration (days)</div>
             <input name="icu_days" form="f">
+
+            <div class="field-label">HCW Contact Frequency</div>
             <select name="hcw_contact" form="f">
             <option value="low">Low HCW Contact</option>
             <option value="medium">Medium HCW Contact</option>
             <option value="high">High HCW Contact</option>
         </select>
+
+            <div class="field-label">Immune Status</div>
             <select name="immune_status" form="f">
             <option value="normal">Normal Immunity</option>
             <option value="immunocompromised">Immunocompromised</option>
@@ -266,23 +300,22 @@
                         <div id="center" class="center">—</div>
                     </div>
 
-                    <div style="margin-top:18px">
+                    <div style="margin-top:16px">
                         <div class="label">ICU Risk</div>
                         <div id="icu" class="badge">—</div>
 
-                        <div class="label" style="margin-top:10px">Individual Risk</div>
+                        <div class="label" style="margin-top:8px">Individual Risk</div>
                         <div id="ind" class="badge">—</div>
                     </div>
                 </div>
 
                 <div class="brief">
-                    <div id="status" class="box status">Waiting for analysis...</div>
-                    <div id="drivers" class="box drivers">Primary drivers will appear here.</div>
-                    <div id="actions" class="box actions">Recommended actions will appear here.</div>
+                    <div id="status" class="box status"></div>
+                    <div id="drivers" class="box drivers"></div>
+                    <div id="actions" class="box actions"></div>
                 </div>
 
             </div>
-
         </div>
     </div>
 
@@ -290,56 +323,59 @@
         document.getElementById("f").addEventListener("submit", async function(e) {
             e.preventDefault();
 
-            const dpiEl = document.getElementById("dpi");
-            const icuEl = document.getElementById("icu");
-            const indEl = document.getElementById("ind");
-            const circleEl = document.getElementById("circle");
-            const centerEl = document.getElementById("center");
-            const statusEl = document.getElementById("status");
-            const driversEl = document.getElementById("drivers");
-            const actionsEl = document.getElementById("actions");
+            const dpi = document.getElementById("dpi");
+            const icu = document.getElementById("icu");
+            const ind = document.getElementById("ind");
+            const circle = document.getElementById("circle");
+            const center = document.getElementById("center");
+            const status = document.getElementById("status");
+            const drivers = document.getElementById("drivers");
+            const actions = document.getElementById("actions");
 
-            statusEl.innerHTML = "⏳ <b>Analyzing risk profile...</b>";
+            status.innerHTML = "⏳ <b>Analyzing risk profile...</b>";
+            drivers.innerHTML = "";
+            actions.innerHTML = "";
 
-            const r = await fetch("/predict", {
+            const res = await fetch("/predict", {
                 method: "POST",
                 body: new FormData(this)
             });
 
-            const d = await r.json();
+            const d = await res.json();
 
-            dpiEl.innerText = d.dPI_dt;
-            icuEl.innerText = d.icu_risk;
-            indEl.innerText = d.individual_risk;
+            dpi.innerText = d.dPI_dt;
+            icu.innerText = d.icu_risk;
+            ind.innerText = d.individual_risk;
 
-            icuEl.className = "badge " + d.icu_risk;
-            indEl.className = "badge " + d.individual_risk;
+            icu.className = "badge " + d.icu_risk;
+            ind.className = "badge " + d.individual_risk;
 
-            circleEl.className = "circle " + d.individual_risk;
+            circle.className = "circle " + d.individual_risk;
 
-            centerEl.innerText =
+            center.innerText =
                 d.individual_risk === "HIGH" ? "🚨 HIGH" :
                 d.individual_risk === "MODERATE" ? "⚠️ MODERATE" :
                 "✅ LOW";
 
-            statusEl.innerHTML =
-                "📊 <b>Status Summary</b><br>" +
-                "ICU-level infection pressure is <b>" + d.icu_risk + "</b>.<br>" +
-                "Individual exposure risk is <b>" + d.individual_risk + "</b>.";
+            setTimeout(() => {
+                status.innerHTML =
+                    "📊 <b>Status Summary</b><br>" +
+                    "ICU-level infection pressure is <b>" + d.icu_risk + "</b>.<br>" +
+                    "Individual exposure risk is <b>" + d.individual_risk + "</b>.";
 
-            driversEl.innerHTML =
-                "🧠 <b>Primary Drivers</b><br>" +
-                "Transmission intensity, exposure duration, and HCW contact.";
+                drivers.innerHTML =
+                    "🧠 <b>Primary Drivers</b><br>" +
+                    "Transmission intensity, exposure duration, and HCW contact.";
 
-            actionsEl.innerHTML =
-                d.individual_risk === "HIGH" ?
-                "🚨 <b>Recommended Actions</b><br>Immediate isolation, strict hygiene, environmental disinfection, and active surveillance." :
-                d.individual_risk === "MODERATE" ?
-                "⚠️ <b>Recommended Actions</b><br>Enhanced monitoring and reinforcement of precautions." :
-                "✅ <b>Recommended Actions</b><br>Maintain current infection control measures.";
+                actions.innerHTML =
+                    d.individual_risk === "HIGH" ?
+                    "🚨 <b>Recommended Actions</b><br>Immediate isolation, strict hygiene, environmental disinfection, and active surveillance." :
+                    d.individual_risk === "MODERATE" ?
+                    "⚠️ <b>Recommended Actions</b><br>Enhanced monitoring and reinforcement of precautions." :
+                    "✅ <b>Recommended Actions</b><br>Maintain current infection control measures.";
+            }, 50);
         });
     </script>
-
 
 </body>
 
