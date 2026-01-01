@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Candida auris Risk Intelligence</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+         :root {
+            --bg: #020617;
+            --blue: #38bdf8;
+            --green: #22c55e;
+            --yellow: #facc15;
+            --red: #ef4444;
+            --text: #e5e7eb;
+            --dim: #9ca3af;
+        }
+        
+        * {
+            box-sizing: border-box
+        }
+        
+        body {
+            margin: 0;
+            background: radial-gradient(circle at top, #0f172a, #020617);
+            font-family: Inter, sans-serif;
+            color: var(--text)
+        }
+        
+        .app {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            min-height: 100vh
+        }
+        
+        .left {
+            padding: 30px;
+            background: linear-gradient(180deg, #0b1220, #020617);
+            border-right: 1px solid rgba(255, 255, 255, .08)
+        }
+        
+        .title {
+            font-family: Orbitron, sans-serif;
+            font-size: 26px
+        }
+        
+        .subtitle {
+            font-size: 13px;
+            color: var(--dim);
+            margin-bottom: 24px
+        }
+        
+        h3 {
+            font-size: 13px;
+            color: var(--dim);
+            margin: 22px 0 8px;
+            letter-spacing: .8px
+        }
+        
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #020617;
+            border: 1px solid #1f2937;
+            border-radius: 6px;
+            color: var(--text)
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            background: linear-gradient(90deg, #38bdf8, #6366f1);
+            cursor: pointer;
+            color: #020617;
+            margin-top: 14px
+        }
+        
+        .right {
+            padding: 30px;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 24px
+        }
+        
+        .card {
+            background: linear-gradient(145deg, #0f172a, #020617);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: 0 0 40px rgba(0, 0, 0, .6)
+        }
+        
+        .dpi {
+            font-family: JetBrains Mono, monospace;
+            font-size: 52px;
+            color: var(--blue)
+        }
+        
+        .label {
+            font-size: 13px;
+            color: var(--dim)
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 24px
+        }
+        
+        .circle {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            margin: auto;
+            border: 1px solid rgba(255, 255, 255, .1)
+        }
+        
+        .core {
+            position: absolute;
+            inset: -40%;
+            border-radius: 50%;
+            filter: blur(18px);
+            animation: spin linear infinite
+        }
+        
+        .LOW .core {
+            background: conic-gradient(from 0deg, var(--green), transparent, var(--green));
+            animation-duration: 14s
+        }
+        
+        .MODERATE .core {
+            background: conic-gradient(from 0deg, var(--yellow), transparent, var(--yellow));
+            animation-duration: 6s
+        }
+        
+        .HIGH .core {
+            background: conic-gradient(from 0deg, var(--red), #ff7a7a, var(--red));
+            animation-duration: 2.5s
+        }
+        
+        @keyframes spin {
+            from {
+                transform: rotate(0deg)
+            }
+            to {
+                transform: rotate(360deg)
+            }
+        }
+        
+        .center {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            z-index: 2
+        }
+        
+        .badge {
+            display: inline-flex;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-weight: 700
+        }
+        
+        .LOW.badge {
+            background: var(--green);
+            color: #022c22
+        }
+        
+        .MODERATE.badge {
+            background: var(--yellow);
+            color: #422006
+        }
+        
+        .HIGH.badge {
+            background: var(--red);
+            color: white
+        }
+        
+        .brief {
+            display: grid;
+            gap: 16px
+        }
+        
+        .box {
+            padding: 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .04);
+            border-left: 4px solid
+        }
+        
+        .status {
+            border-color: var(--blue)
+        }
+        
+        .drivers {
+            border-color: var(--yellow)
+        }
+        
+        .actions {
+            border-color: var(--red)
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <div class="left">
+            <div class="title">🧬 Candida auris</div>
+            <div class="subtitle">Risk Intelligence Dashboard</div>
+
+            <h3>ICU PARAMETERS</h3>
+            <input name="Lambda" form="f">
+            <input name="beta1" form="f">
+            <input name="beta2" form="f">
+            <input name="d1" form="f">
+            <input name="d2" form="f">
+            <input name="lambda" form="f">
+            <input name="1_over_sigma" form="f">
+            <input name="phi" form="f">
+            <input name="mu" form="f">
+
+            <h3>INDIVIDUAL EXPOSURE</h3>
+            <input name="icu_days" form="f">
+            <select name="hcw_contact" form="f">
+            <option value="low">Low HCW Contact</option>
+            <option value="medium">Medium HCW Contact</option>
+            <option value="high">High HCW Contact</option>
+        </select>
+            <select name="immune_status" form="f">
+            <option value="normal">Normal Immunity</option>
+            <option value="immunocompromised">Immunocompromised</option>
+        </select>
+
+            <form id="f">
+                <button>🚀 Run Risk Analysis</button>
+            </form>
+        </div>
+
+        <div class="right">
+
+            <div class="card">
+                <div class="label">Predicted Infection Growth</div>
+                <div id="dpi" class="dpi">—</div>
+                <div class="label">dPI / dt</div>
+            </div>
+
+            <div class="card grid">
+
+                <div>
+                    <div id="circle" class="circle">
+                        <div class="core"></div>
+                        <div id="center" class="center">—</div>
+                    </div>
+
+                    <div style="margin-top:18px">
+                        <div class="label">ICU Risk</div>
+                        <div id="icu" class="badge">—</div>
+
+                        <div class="label" style="margin-top:10px">Individual Risk</div>
+                        <div id="ind" class="badge">—</div>
+                    </div>
+                </div>
+
+                <div class="brief">
+                    <div id="status" class="box status">Waiting for analysis...</div>
+                    <div id="drivers" class="box drivers">Primary drivers will appear here.</div>
+                    <div id="actions" class="box actions">Recommended actions will appear here.</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("f").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const dpiEl = document.getElementById("dpi");
+            const icuEl = document.getElementById("icu");
+            const indEl = document.getElementById("ind");
+            const circleEl = document.getElementById("circle");
+            const centerEl = document.getElementById("center");
+            const statusEl = document.getElementById("status");
+            const driversEl = document.getElementById("drivers");
+            const actionsEl = document.getElementById("actions");
+
+            statusEl.innerHTML = "⏳ <b>Analyzing risk profile...</b>";
+
+            const r = await fetch("/predict", {
+                method: "POST",
+                body: new FormData(this)
+            });
+
+            const d = await r.json();
+
+            dpiEl.innerText = d.dPI_dt;
+            icuEl.innerText = d.icu_risk;
+            indEl.innerText = d.individual_risk;
+
+            icuEl.className = "badge " + d.icu_risk;
+            indEl.className = "badge " + d.individual_risk;
+
+            circleEl.className = "circle " + d.individual_risk;
+
+            centerEl.innerText =
+                d.individual_risk === "HIGH" ? "🚨 HIGH" :
+                d.individual_risk === "MODERATE" ? "⚠️ MODERATE" :
+                "✅ LOW";
+
+            statusEl.innerHTML =
+                "📊 <b>Status Summary</b><br>" +
+                "ICU-level infection pressure is <b>" + d.icu_risk + "</b>.<br>" +
+                "Individual exposure risk is <b>" + d.individual_risk + "</b>.";
+
+            driversEl.innerHTML =
+                "🧠 <b>Primary Drivers</b><br>" +
+                "Transmission intensity, exposure duration, and HCW contact.";
+
+            actionsEl.innerHTML =
+                d.individual_risk === "HIGH" ?
+                "🚨 <b>Recommended Actions</b><br>Immediate isolation, strict hygiene, environmental disinfection, and active surveillance." :
+                d.individual_risk === "MODERATE" ?
+                "⚠️ <b>Recommended Actions</b><br>Enhanced monitoring and reinforcement of precautions." :
+                "✅ <b>Recommended Actions</b><br>Maintain current infection control measures.";
+        });
+    </script>
+
+
+</body>
+
+</html>
