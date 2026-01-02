@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Candida auris Risk Intelligence</title>
@@ -18,7 +18,7 @@
         }
         
         * {
-            box-sizing: border-box
+            box-sizing: border-box;
         }
         
         body {
@@ -33,6 +33,7 @@
             grid-template-columns: 420px 1fr;
             min-height: 100vh;
         }
+        /* ================= LEFT PANEL ================= */
         
         .left {
             padding: 28px;
@@ -87,6 +88,7 @@
             color: #020617;
             margin-top: 10px;
         }
+        /* ================= RIGHT PANEL ================= */
         
         .right {
             padding: 28px;
@@ -119,6 +121,7 @@
             grid-template-columns: 320px 1fr;
             gap: 22px;
         }
+        /* ================= RISK CIRCLE ================= */
         
         .circle {
             width: 240px;
@@ -172,6 +175,7 @@
             font-size: 18px;
             z-index: 2;
         }
+        /* ================= BADGES ================= */
         
         .badge {
             display: inline-flex;
@@ -195,6 +199,7 @@
             background: var(--red);
             color: white;
         }
+        /* ================= EXPLANATION BOXES ================= */
         
         .brief {
             display: grid;
@@ -227,6 +232,8 @@
 <body>
 
     <div class="app">
+
+        <!-- ================= LEFT ================= -->
 
         <div class="left">
             <div class="title">🧬 Candida auris</div>
@@ -284,6 +291,8 @@
             </form>
         </div>
 
+        <!-- ================= RIGHT ================= -->
+
         <div class="right">
 
             <div class="card">
@@ -310,7 +319,7 @@
                 </div>
 
                 <div class="brief">
-                    <div id="status" class="box status"></div>
+                    <div id="status" class="box status">Waiting for analysis…</div>
                     <div id="drivers" class="box drivers"></div>
                     <div id="actions" class="box actions"></div>
                 </div>
@@ -349,7 +358,6 @@
 
             icu.className = "badge " + d.icu_risk;
             ind.className = "badge " + d.individual_risk;
-
             circle.className = "circle " + d.individual_risk;
 
             center.innerText =
@@ -357,23 +365,21 @@
                 d.individual_risk === "MODERATE" ? "⚠️ MODERATE" :
                 "✅ LOW";
 
-            setTimeout(() => {
-                status.innerHTML =
-                    "📊 <b>Status Summary</b><br>" +
-                    "ICU-level infection pressure is <b>" + d.icu_risk + "</b>.<br>" +
-                    "Individual exposure risk is <b>" + d.individual_risk + "</b>.";
+            status.innerHTML =
+                "📊 <b>Status Summary</b><br>" +
+                "ICU-level infection pressure is <b>" + d.icu_risk + "</b>.<br>" +
+                "Individual exposure risk is <b>" + d.individual_risk + "</b>.";
 
-                drivers.innerHTML =
-                    "🧠 <b>Primary Drivers</b><br>" +
-                    "Transmission intensity, exposure duration, and HCW contact.";
+            drivers.innerHTML =
+                "🧠 <b>Primary Drivers</b><br>" +
+                "Transmission intensity, exposure duration, and HCW contact.";
 
-                actions.innerHTML =
-                    d.individual_risk === "HIGH" ?
-                    "🚨 <b>Recommended Actions</b><br>Immediate isolation, strict hygiene, environmental disinfection, and active surveillance." :
-                    d.individual_risk === "MODERATE" ?
-                    "⚠️ <b>Recommended Actions</b><br>Enhanced monitoring and reinforcement of precautions." :
-                    "✅ <b>Recommended Actions</b><br>Maintain current infection control measures.";
-            }, 50);
+            actions.innerHTML =
+                d.individual_risk === "HIGH" ?
+                "🚨 <b>Recommended Actions</b><br>Immediate isolation, strict hygiene, environmental disinfection, and active surveillance." :
+                d.individual_risk === "MODERATE" ?
+                "⚠️ <b>Recommended Actions</b><br>Enhanced monitoring and reinforcement of precautions." :
+                "✅ <b>Recommended Actions</b><br>Maintain current infection control measures.";
         });
     </script>
 
